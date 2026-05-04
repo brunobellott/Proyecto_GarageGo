@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar código</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="DivPrincipal">
+
+    <div class="CajasdeRegistro">
+
+        <!-- LOGO -->
+        <img src="img/logo.png" alt="GarageGo" class="logo">
+
+        <h2>RECUPERAR CONTRASEÑA</h2>
+
+        <p class="subtitulo">INTRODUCE EL CÓDIGO</p>
+
+        <form action="verificar_codigo.php" method="POST">
+
+            <!-- Inputs código -->
+            <div class="codigo-container">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="boton">ACCEDER</button>
+
+        </form>
+
+        <p class="reenviar">VOLVER A ENVIAR EL CÓDIGO</p>
+
+    </div>
+
+</div>
+
+<script>
+const inputs = document.querySelectorAll(".codigo");
+
+inputs.forEach((input, index) => {
+    input.addEventListener("input", () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    });
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+            inputs[index - 1].focus();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
