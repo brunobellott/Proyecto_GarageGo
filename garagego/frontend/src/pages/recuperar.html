@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar contraseña</title>
+    <link
+      rel="stylesheet"
+      href="../../src/styles/pages/estilosLogin/styles.css"
+    />
+    >
+  </head>
+
+  <body>
+    <div class="DivPrincipal">
+      <div class="CajasdeRegistro">
+        <!-- LOGO -->
+        <img
+          src="../../public/assets/icons/logo.png"
+          alt="GarageGo"
+          class="logo"
+        />
+
+        <h1>RECUPERAR CONTRASEÑA</h1>
+
+        <form action="verficarCodigo.html" method="POST">
+          <!-- Inputs -->
+          <input type="email" name="mail" placeholder="MAIL" required />
+
+          <input type="text" name="usuario" placeholder="USUARIO" required />
+
+          <!-- Botones -->
+          <div class="acciones">
+            <button type="button" class="volver" onclick="history.back()">
+              ←
+            </button>
+
+            <button type="submit" class="boton">ENVIAR CÓDIGO</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

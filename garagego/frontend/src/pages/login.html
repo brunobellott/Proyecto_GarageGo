@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Garage GO</title>
+    <link
+      rel="stylesheet"
+      href="../../src/styles/pages/estilosLogin/styles.css"
+    />
+  </head>
+
+  <body>
+    <main>
+      <div class="DivPrincipal">
+        <div class="CajasdeRegistro">
+          <!-- LOGO -->
+          <img
+            src="../../public/assets/icons/logo.png"
+            alt="GarageGo"
+            class="logo"
+          />
+
+          <h1>INICIAR SESIÓN</h1>
+
+          <form action="autenticar.html" method="POST">
+            <input type="text" name="usuario" placeholder="USUARIO" required />
+
+            <input
+              type="password"
+              name="clave"
+              placeholder="CONTRASEÑA"
+              required
+            />
+
+            <button type="submit" class="boton">ACCEDER</button>
+
+            <button
+              type="button"
+              class="boton secundario"
+              onclick="window.location.href = 'registro.html'"
+            >
+              REGISTRARSE
+            </button>
+          </form>
+
+          <p class="registroLink">
+            <a href="recuperar.html">¿OLVIDÓ SU CONTRASEÑA?</a>
+          </p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
