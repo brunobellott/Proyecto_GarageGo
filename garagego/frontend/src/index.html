@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GarageGo - Web App</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main class="app-wrapper">
+        <!-- ... (Header y Buscador se mantienen igual) ... -->
+        <header class="main-header">
+            <button class="icon-btn" onclick="toggleMenu()">
+                <i class="las la-bars"></i>
+            </button>
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="GarageGo" class="brand-logo">
+            </div>
+            <div class="header-spacer"></div>
+        </header>
+
+        <section class="search-area">
+            <div class="search-input-group">
+                <i class="las la-search"></i>
+                <input type="text" placeholder="Search">
+                <i class="las la-microphone"></i>
+            </div>
+            <button class="icon-btn filter-main">
+                <i class="las la-filter"></i>
+            </button>
+        </section>
+
+        <!-- CONTENEDOR DEL MAPA -->
+        <section class="map-viewport">
+            <iframe 
+                class="google-map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105073.4534015623!2d-58.50333767713437!3d-34.61566245203362!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e2bb0!2sBuenos%20Aires%2C%20CABA!5e0!3m2!1ses-419!2sar!4v1714970000000!5m2!1ses-419!2sar" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </section>
+        <!-- CARD DE DETALLE DE GARAGE (FLOTANTE) -->
+        <div class="garage-floating-card">
+            <div class="garage-card-content">
+                <div class="garage-img-container">
+                    <img src="assets/garage1.jpg" alt="Garage" class="garage-thumb">
+                    <span class="price-tag">$450<span>/hs</span></span>
+                </div>
+                <div class="garage-info">
+                    <div class="garage-main-row">
+                        <div class="rating">
+                            <i class="las la-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                    <p class="garage-address"><i class="las la-map-marker"></i> Calle 123, CABA</p>
+                    <div class="garage-tags">
+                        <span class="tag"><i class="las la-shield-alt"></i> Seguridad</span>
+                        <span class="tag"><i class="las la-clock"></i> 24h</span>
+                    </div>
+                    <button class="btn-reserve">Reservar ahora</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SIDE MENU REDISEÑADO -->
+    <aside class="side-menu" id="sideMenu">
+        <div class="menu-drawer">
+            <div class="menu-header-card">
+                <div class="profile-container">
+                    <img src="assets/user_img.png" class="user-avatar">
+                    <div class="status-indicator"></div>
+                </div>
+                <h3 class="user-full-name">Nombre de Usuario</h3>
+                <div class="balance-container">
+                    <i class="las la-wallet"></i>
+                    <span>Saldo GarageGo : $ 0.00</span>
+                </div>
+
+                <!-- Card de Modo Anfitrión -->
+                <div class="host-mode-card">
+                    <div class="host-info">
+                        <div class="host-icon">
+                            <i class="las la-home"></i>
+                        </div>
+                        <div class="host-text">
+                            <span class="mode-title">Modo anfitrión</span>
+                        </div>
+                    </div>
+                    <label class="ios-switch">
+                        <input type="checkbox">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Navegación con items redondeados -->
+            <nav class="side-nav">
+                <a href="#" class="nav-item active">
+                    <div class="nav-icon-box"><i class="las la-home"></i></div>
+                    <span class="nav-text">Inicio</span>
+                    <i class="las la-angle-right arrow-right"></i>
+                </a>
+                
+                <!-- ESTE ES EL ENLACE CORREGIDO -->
+                <a href="perfil.html" class="nav-item">
+                    <div class="nav-icon-box"><i class="las la-user"></i></div>
+                    <span class="nav-text">Mi Perfil</span>
+                </a>
+
+                <a href="reservas.html" class="nav-item">
+                    <div class="nav-icon-box"><i class="las la-arrow-right"></i></div>
+                    <span class="nav-text">Reservas</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon-box"><i class="las la-comment-alt"></i></div>
+                    <span class="nav-text">Mensajes</span>
+                </a>
+                
+                <hr class="nav-divider">
+                
+                <a href="#" class="nav-item logout">
+                    <div class="nav-icon-box"><i class="las la-sign-out-alt"></i></div>
+                    <span class="nav-text">Cerrar Sesión</span>
+                </a>
+            </nav>
+        </div>
+        <div class="menu-overlay" onclick="toggleMenu()"></div>
+    </aside>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sideMenu').classList.toggle('is-open');
+        }
+
+        // SCRIPT SUGERIDO DE NAVEGACIÓN
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
