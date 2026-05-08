@@ -1,59 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro</title>
-    <link
-      rel="stylesheet"
-      href="../../src/styles/pages/estilosLogin/styles.css"
-    />
-  </head>
 
-  <body>
-    <div class="DivPrincipal">
-      <div class="CajasdeRegistro">
-        <!-- LOGO -->
-        <img
-          src="../../public/assets/icons/logo.png"
-          alt="GarageGo"
-          class="logo"
-        />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-        <h1>REGISTRO</h1>
+<body>
 
-        <form action="registrar.html" method="POST">
-          <!-- Google -->
-          <button type="button" class="google-btn">
-            <img
-              src="../../public/assets/icons/google.png"
-              class="google-icon"
-            />
-            INGRESAR CON GOOGLE
+  <div class="DivPrincipal">
+
+    <div class="CajasdeRegistro">
+
+      <!-- LOGO -->
+      <img src="img/logo.png" alt="GarageGo" class="logo">
+
+      <h2>REGISTRO</h2>
+
+      <form id="registerForm">
+
+        <!-- GOOGLE -->
+        <button type="button" class="google-btn">
+          <img src="img/google.png" class="google-icon">
+          INGRESAR CON GOOGLE
+        </button>
+
+        <input type="text" id="nombre" placeholder="NOMBRE" required>
+
+        <input type="email" id="email" placeholder="EMAIL" required>
+
+        <input type="password" id="password" placeholder="CONTRASEÑA" required>
+        
+         
+
+        <div class="acciones">
+          <button type="button" class="volver" onclick="history.back()">←</button>
+
+          <button type="submit" class="boton">
+            REGISTRARSE
           </button>
+        </div>
 
-          <!-- Inputs -->
-          <input type="email" name="mail" placeholder="MAIL" required />
+      </form>
 
-          <input type="text" name="usuario" placeholder="USUARIO" required />
-
-          <input
-            type="password"
-            name="clave"
-            placeholder="CONTRASEÑA"
-            required
-          />
-
-          <!-- Botones -->
-          <div class="acciones">
-            <button type="button" class="volver" onclick="history.back()">
-              ←
-            </button>
-
-            <button type="submit" class="boton">ACCEDER</button>
-          </div>
-        </form>
-      </div>
     </div>
-  </body>
+
+  </div>
+
+</body>
+
+<script>
+  document.getElementById("registerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    
+    const res = await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ nombre, email, password })
+    });
+
+    const data = await res.json();
+    console.log(data); // 👈 DEBUG
+
+    if (data.success) {
+      alert("Usuario registrado");
+      window.location.href = "index.html";
+    } else {
+      alert(data.message);
+    }
+  });
+</script>
+
 </html>
