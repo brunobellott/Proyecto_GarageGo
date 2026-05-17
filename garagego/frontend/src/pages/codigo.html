@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Verificar código</title>
-    <link
-      rel="stylesheet"
-      href="../../src/styles/pages/estilosLogin/styles.css"
-    />
+    <link rel="stylesheet" href="../styles/pages/estilosLogin/styles.css" />
     >
   </head>
-
+  <!--  <input
+            type="password"
+            id="password"
+            placeholder="NUEVA CONTRASEÑA"
+            required
+          />-->
   <body>
     <div class="DivPrincipal">
       <div class="CajasdeRegistro">
@@ -20,9 +22,14 @@
           alt="GarageGo"
           class="logo"
         />
-
-        <h2>RECUPERAR CONTRASEÑA</h2>
-
+        <p class="recuperarContraseña">
+          Hemos enviado un código de verificación a su correo electrónico.
+          <img
+            class="imageMail"
+            src="../../public/assets/icons/gmail.png"
+            alt="email logo"
+          />
+        </p>
         <p class="subtitulo">INTRODUCE EL CÓDIGO</p>
 
         <form action="verificar_codigo.php" method="POST">
@@ -34,11 +41,13 @@
             <input type="text" maxlength="1" class="codigo" />
           </div>
 
-          <!-- Botón -->
+          <!-- Botones -->
+
           <button type="submit" class="boton">ACCEDER</button>
         </form>
 
         <p class="reenviar">VOLVER A ENVIAR EL CÓDIGO</p>
+        <button type="button" class="volver" onclick="volverPagina()">←</button>
       </div>
     </div>
 
@@ -59,5 +68,6 @@
         });
       });
     </script>
+    <script src="../js/volverPaginas.js"></script>
   </body>
 </html>
