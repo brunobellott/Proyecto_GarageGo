@@ -1,0 +1,173 @@
+-- =========================
+-- TABLA USUARIO
+-- =========================
+CREATE TABLE usuario (
+    id_usuario SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    telefono VARCHAR(20),
+    rol VARCHAR(20) NOT NULL CHECK (rol IN ('propietario', 'conductor')),
+    activo BOOLEAN DEFAULT TRUE,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =========================
+-- TABLA ESPACIO
+-- =========================
+CREATE TABLE espacio (
+    id_espacio SERIAL PRIMARY KEY,
+    id_propietario INT NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    precio_hora NUMERIC(10,2) NOT NULL,
+    descripcion TEXT,
+    disponible BOOLEAN DEFAULT TRUE,
+
+    CONSTRAINT fk_propietario
+        FOREIGN KEY (id_propietario)
+        REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA FOTO_ESPACIO
+-- =========================
+CREATE TABLE foto_espacio (
+    id_foto SERIAL PRIMARY KEY,
+    id_espacio INT NOT NULL,
+    url_imagen TEXT NOT NULL,
+
+    CONSTRAINT fk_foto_espacio
+        FOREIGN KEY (id_espacio)
+        REFERENCES espacio(id_espacio)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA DISPONIBILIDAD
+-- =========================
+CREATE TABLE disponibilidad (
+    id_disponibilidad SERIAL PRIMARY KEY,
+    id_espacio INT NOT NULL,
+    fecha DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+
+    CONSTRAINT fk_disponibilidad_espacio
+        FOREIGN KEY (id_espacio)
+        REFERENCES espacio(id_espacio)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA RESERVA
+-- =========================
+CREATE TABLE reserva (
+    id_reserva SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_espacio INT NOT NULL,
+    fecha_inicio TIMESTAMP NOT NULL,
+    fecha_fin TIMESTAMP NOT NULL,
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('pendiente', 'confirmada', 'cancelada')),
+
+    CONSTRAINT fk_reserva_usuario
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_reserva_espacio
+        FOREIGN KEY (id_espacio)
+        REFERENCES espacio(id_espacio)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA PAGO (1:1 con reserva)
+-- =========================
+CREATE TABLE pago (
+    id_pago SERIAL PRIMARY KEY,
+    id_reserva INT UNIQUE NOT NULL,
+    monto NUMERIC(10,2) NOT NULL,
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('pendiente', 'pagado', 'cancelado')),
+    fecha_pago TIMESTAMP,
+
+    CONSTRAINT fk_pago_reserva
+        FOREIGN KEY (id_reserva)
+        REFERENCES reserva(id_reserva)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA NOTIFICACION
+-- =========================
+CREATE TABLE notificacion (
+    id_notificacion SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    mensaje TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    leido BOOLEAN DEFAULT FALSE,
+
+    CONSTRAINT fk_notificacion_usuario
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA CALIFICACION
+-- =========================
+CREATE TABLE calificacion (
+    id_calificacion SERIAL PRIMARY KEY,
+    id_reserva INT NOT NULL,
+    id_emisor INT NOT NULL,
+    id_receptor INT NOT NULL,
+    puntaje INT CHECK (puntaje BETWEEN 1 AND 5),
+    comentario TEXT,
+
+    CONSTRAINT fk_calificacion_reserva
+        FOREIGN KEY (id_reserva)
+        REFERENCES reserva(id_reserva)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_calificacion_emisor
+        FOREIGN KEY (id_emisor)
+        REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_calificacion_receptor
+        FOREIGN KEY (id_receptor)
+        REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE
+);
+
+-- =========================
+-- TABLA REPORTE
+-- =========================
+CREATE TABLE reporte (
+    id_reporte SERIAL PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_espacio INT NOT NULL,
+    motivo TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_reporte_usuario
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_reporte_espacio
+        FOREIGN KEY (id_espacio)
+        REFERENCES espacio(id_espacio)
+        ON DELETE CASCADE
+);
+
+
+Modificaciones:
+
+ALTER TABLE usuario
+ADD COLUMN rol VARCHAR(20)
+CHECK (rol IN ('usuario', 'conductor'))
+DEFAULT 'usuario';
+
+ALTER TABLE usuario
+ADD COLUMN codigo_recuperacion VARCHAR(10);
