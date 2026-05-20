@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Datos Personales</title>
+
+    <link rel="stylesheet" href="../../styles/estilosPerfil/menuPerfil.css" />
+  </head>
+
+  <body>
+    <header class="page-header">
+      <h1>Datos Personales</h1>
+    </header>
+
+    <section class="profile-container">
+      <div class="profile-card">
+        <div class="profile-photo">
+          <img
+            src="../../../public/assets/icons/user_img.png"
+            alt="Foto de perfil"
+          />
+        </div>
+
+        <form class="profile-form">
+          <div class="input-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="NOMBRE" />
+          </div>
+
+          <div class="input-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" placeholder="APELLIDO" />
+          </div>
+
+          <div class="input-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" placeholder="MAIL" />
+          </div>
+
+          <div class="input-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="TELEFONO" />
+          </div>
+
+          <div class="input-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" placeholder="DIRECCIÓN" />
+          </div>
+
+          <button type="submit" class="save-btn">Guardar cambios</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="acciones">
+      <button type="button" class="volver" onclick="history.back()">←</button>
+    </div>
+
+    <script src="../../js/volverPaginas.js"></script>
+  </body>
+</html>

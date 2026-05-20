@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mis Vehículos</title>
+
+    <link rel="stylesheet" href="../../styles/estilosPerfil/menuPerfil.css" />
+  </head>
+
+  <body>
+    <header class="page-header">
+      <h1>Mis Vehículos</h1>
+
+      <button class="add-btn">+ Agregar</button>
+    </header>
+
+    <section class="vehicles-list">
+      <!-- VEHICLE CARD -->
+
+      <div class="vehicle-card">
+        <img
+          src="../../../public/assets/icons/toyota.webp"
+          alt="Toyota Corolla"
+        />
+
+        <div class="vehicle-info">
+          <h3>Toyota Corolla</h3>
+
+          <p>AA123BB</p>
+
+          <!-- STATUS -->
+
+          <div class="vehicle-status">
+            <span class="status-text"> Activo </span>
+
+            <label class="ios-switch">
+              <input type="checkbox" checked aria-label="Estado del vehículo" />
+
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+
+          <!-- ACTIONS -->
+
+          <div class="vehicle-actions">
+            <button class="edit-btn">Editar</button>
+
+            <button class="delete-btn">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="acciones">
+      <button type="button" class="volver" onclick="history.back()">←</button>
+    </div>
+    <script type="module" src="./js/vehiculos.js"></script>
+  </body>
+  <script type="module" src="./js/vehiculos.js"></script>
+  <script src="../../js/volverPaginas.js"></script>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="../styles/pages/estilosLogin/styles.css" />
+    <link rel="stylesheet" href="../../styles/estilosLogin/styles.css" />
   </head>
 
   <body>
@@ -12,7 +12,7 @@
       <div class="CajasdeRegistro">
         <!-- LOGO -->
         <img
-          src="../../public/assets/icons/logo.png"
+          src="../../../public/assets/icons/logo.png"
           alt="GarageGo"
           class="logo"
         />
@@ -45,9 +45,13 @@
               👁
             </button>
           </div>
-
-          <button type="submit" class="boton">ACCEDER</button>
-        </form>
+            <button
+              type="button"
+              class="boton"
+              onclick="window.location.href = '../home/principal.html'">
+              ACCEDER
+            </button>
+       
 
         <button
           type="button"
@@ -63,7 +67,7 @@
       </div>
     </div>
 
-    <script src="../js/verContraseña.js"></script>
+    <script src="../../js/verContraseña.js"></script>
 
     <script>
       document
