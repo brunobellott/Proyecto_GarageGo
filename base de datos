@@ -171,3 +171,10 @@ DEFAULT 'usuario';
 
 ALTER TABLE usuario
 ADD COLUMN codigo_recuperacion VARCHAR(10);
+
+Instalacion paso a paso para Node:
+npm install
+npm init -y
+npm install express cors body-parser pg
+npm install nodemailer
+
