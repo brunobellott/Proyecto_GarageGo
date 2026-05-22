@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Garage GO - Verificación</title>
+
+    <link
+      rel="stylesheet"
+      href="../../src/styles/pages/estilosLogin/styles.css"
+    />
+  </head>
+
+  <body>
+    <div class="DivPrincipal">
+      <div class="CajasdeRegistro">
+        <!-- BOTÓN VOLVER -->
+        <button type="button" class="volver" onclick="history.back()">←</button>
+
+        <!-- LOGO -->
+        <img
+          src="../../public/assets/icons/logo.png"
+          alt="GarageGo"
+          class="logo"
+        />
+        <p class="descripcion">
+          Hemos enviado un código de verificación a su correo electrónico.
+        </p>
+        <!-- TÍTULO -->
+        <h1>INGRESE SU CÓDIGO</h1>
+
+        <!-- TEXTO -->
+
+        <!-- FORMULARIO -->
+        <form id="formCodigo">
+          <!-- INPUTS CÓDIGO -->
+          <div class="codigo-container">
+            <input type="text" maxlength="1" class="codigo" required />
+
+            <input type="text" maxlength="1" class="codigo" required />
+
+            <input type="text" maxlength="1" class="codigo" required />
+
+            <input type="text" maxlength="1" class="codigo" required />
+          </div>
+
+          <!-- BOTÓN -->
+          <button type="submit" class="boton">REESTABLECER CONTRASEÑA</button>
+        </form>
+
+        <!-- REENVIAR -->
+        <p class="reenviar" id="reenviarCodigo">VOLVER A ENVIAR EL CÓDIGO</p>
+      </div>
+    </div>
+
+    <script src="../js/verificarCodigo.js"></script>
+  </body>
+</html>
