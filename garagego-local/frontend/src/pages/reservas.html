@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GarageGo - Mis Reservas</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/frontend/src/styles/style-principal.css">
+</head>
+<body class="reservas-page">
+
+    <header class="reservas-header">
+        <div class="header-top">
+            <a href="principal.html" class="back-btn"><i class="las la-angle-left"></i></a>
+            <div class="header-title">
+                <h1>Mis Reservas</h1>
+                <p>Historial de tus estacionamientos</p>
+            </div>
+            <button class="receipt-icon-btn"><i class="las la-file-invoice-dollar"></i></button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="las la-wallet icon-blue"></i>
+                <span class="stat-value">$ 0.00</span>
+                <span class="stat-label">Total gastado</span>
+            </div>
+            <div class="stat-card">
+                <i class="las la-piggy-bank icon-green"></i>
+                <span class="stat-value">$ 0.00</span>
+                <span class="stat-label">Total ahorrado</span>
+            </div>
+            <div class="stat-card">
+                <i class="las la-history icon-purple"></i>
+                <span class="stat-value">0</span>
+                <span class="stat-label">Reservas</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="reservas-content">
+        <div class="search-bar-container">
+            <div class="search-box">
+                <i class="las la-search"></i>
+                <input type="text" placeholder="Buscar por garage o fecha...">
+            </div>
+        </div>
+
+        <section class="history-section">
+            <h2 class="section-title">Historial</h2>
+            
+            <div class="empty-state">
+                <div class="empty-icon-box">
+                    <i class="las la-receipt"></i>
+                </div>
+                <h3>Sin reservas para este filtro</h3>
+                <p>Prueba cambiando el período o la categoría</p>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

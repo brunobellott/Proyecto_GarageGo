@@ -1,69 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
 </head>
 
 <body>
-
-<div class="DivPrincipal">
-
+  <div class="DivPrincipal">
     <div class="CajasdeRegistro">
+      <!-- LOGO -->
+      <img src="../../public/assets/icons/logo.png" alt="GarageGo" class="logo" />
 
-        <!-- LOGO -->
-        <img src="img/logo.png" alt="GarageGo" class="logo">
+      <h2>INICIAR SESIÓN</h2>
+      <form id="loginForm">
+        <input type="email" id="email" name="email" placeholder="Email" maxlength="100" autocomplete="email" required />
 
-        <h2>INICIAR SESIÓN</h2>
+        <div class="contenedor-password">
+          <input type="password" id="password" name="password" placeholder="Contraseña" minlength="6" maxlength="64"
+            autocomplete="current-password" required />
 
-        <form id="loginForm">
-        
-            <input type="email" id="email" placeholder="EMAIL" required>
-        
-            <input type="password" id="password" placeholder="CONTRASEÑA" required>
-        
-            <button type="submit" class="boton">ACCEDER</button>
-        
-            <button type="button" class="boton secundario" onclick="window.location.href='registro.html'">
-                REGISTRARSE
-            </button>
-        
-        </form>
+          <button type="button" class="btn-password" id="togglePassword">
+            👁
+          </button>
+        </div>
 
-        <p class="registroLink">
-            <a href="recuperar.html">¿OLVIDÓ SU CONTRASEÑA?</a>
-        </p>
+        <button type="submit" class="boton">ACCEDER</button>
+      </form>
 
+      <button type="button" class="boton secundario" onclick="window.location.href = 'registro.html'">
+        REGISTRARSE
+      </button>
+
+      <p class="registroLink">
+        <a href="recuperar.html">¿OLVIDÓ SU CONTRASEÑA?</a>
+      </p>
     </div>
+  </div>
 
-</div>
+  <script src="../js/verContraseña.js"></script>
 
+  <script>
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const res = await fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          window.location.href = "principal.html";
+        } else {
+          alert(data.message);
+        }
+      });
+  </script>
 </body>
 
-<script>
-    document.getElementById("loginForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  const res = await fetch("http://localhost:3000/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email, password })
-  });
-
-  const data = await res.json();
-
-  if (data.success) {
-    window.location.href = "principal.html";
-  } else {
-    alert(data.message);
-  }
-});
-</script>
 </html>
