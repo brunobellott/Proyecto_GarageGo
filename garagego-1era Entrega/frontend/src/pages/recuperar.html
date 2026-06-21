@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperar contraseña</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+
+<body>
+  <div class="DivPrincipal">
+    <div class="CajasdeRegistro">
+      <!-- LOGO -->
+      <img src="../../public/assets/icons/logo.png" alt="GarageGo" class="logo" />
+
+      <h2>RECUPERAR CONTRASEÑA</h2>
+
+      <form id="recuperarForm">
+        <!-- Inputs -->
+        <input type="email" id="email" placeholder="MAIL" required />
+
+        <!-- Botones -->
+        <div class="acciones">
+          <button type="button" class="volver" onclick="volverPagina()">
+            ←
+          </button>
+          <button type="submit" class="boton">
+            CAMBIAR CONTRASEÑA
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="../js/volverPaginas.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabaseClient.js"></script>
+
+<script>
+
+document
+  .getElementById("recuperarForm")
+  .addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email =
+      document.getElementById("email").value.trim().toLowerCase();
+
+    try {
+
+      const emailYaExiste =
+        await emailExisteEnUsuario(email);
+
+      if (!emailYaExiste) {
+
+        alert("No encontramos una cuenta registrada con ese email.");
+        return;
+      }
+
+    } catch (error) {
+
+      alert("No se pudo validar el email. Intenta nuevamente.");
+      return;
+    }
+
+    const { error } =
+      await supabaseClient.auth.resetPasswordForEmail(
+        email,
+        {
+          redirectTo:
+            "http://127.0.0.1:5500/frontend/src/pages/nueva-password.html"
+        }
+      );
+
+    if(error){
+
+      alert(error.message);
+      return;
+    }
+
+    alert(
+      "Se envió un enlace para restablecer la contraseña"
+    );
+
+  });
+  
+</script>
+
+

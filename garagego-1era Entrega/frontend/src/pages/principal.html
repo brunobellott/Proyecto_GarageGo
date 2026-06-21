@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,11 @@
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="/frontend/src/styles/style-principal.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabaseClient.js"></script>
+    <script>
+        activarProteccionPaginaPrincipal();
+    </script>
 </head>
 
 <body>
@@ -104,6 +110,7 @@
                     <span class="nav-text">Inicio</span>
                     <i class="las la-angle-right arrow-right"></i>
                 </a>
+
                 <!-- ESTE ES EL ENLACE CORREGIDO -->
                 <a href="perfil.html" class="nav-item">
                     <div class="nav-icon-box"><i class="las la-user"></i></div>
@@ -114,14 +121,14 @@
                     <div class="nav-icon-box"><i class="las la-arrow-right"></i></div>
                     <span class="nav-text">Reservas</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="mensajes.html" class="nav-item">
                     <div class="nav-icon-box"><i class="las la-comment-alt"></i></div>
                     <span class="nav-text">Mensajes</span>
                 </a>
 
                 <hr class="nav-divider">
 
-                <a href="index.html" class="nav-item logout">
+                <a href="index.html" class="nav-item logout" id="logoutButton">
                     <div class="nav-icon-box"><i class="las la-sign-out-alt"></i></div>
                     <span class="nav-text">Cerrar Sesión</span>
                 </a>
@@ -143,6 +150,12 @@
                 item.classList.add('active');
             });
         });
+
+        document.getElementById('logoutButton').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await cerrarSesion();
+        });
     </script>
 </body>
+
 </html>

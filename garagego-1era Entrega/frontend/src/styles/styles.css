@@ -252,16 +252,72 @@ input:focus {
   width: 100%;
 }
 
+.contenedor-password input {
+  padding-right: 82px;
+}
+
 .btn-password {
   position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-
+  right: 0;
+  top: 0;
+  transform: none;
+  width: 72px;
+  height: 52px;
+  border-radius: 4px 25px 25px 4px;
   border: none;
-  background: none;
+  border-bottom: 2px solid #f5b800;
+  background: #e3e3e3;
+  color: #111111;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transition: 0.2s ease;
+}
+
+.btn-password::before {
+  content: "";
+  width: 19px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-radius: 999px / 720px;
+  display: block;
+}
+
+.btn-password::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.btn-password:hover {
+  background: #d8d8d8;
+  transform: none;
+}
+
+.btn-password.is-visible {
+  background: #dedede;
+  color: #111111;
+}
+
+.btn-password.is-visible:after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  position: absolute;
+  transform: rotate(43deg);
+}
+
+.btn-password.is-visible:before {
+  content: "";
 }
 
 /*ESTILO CHECKBOX TERMINOS Y CONDICIONES*/
@@ -272,5 +328,21 @@ input:focus {
   font-size: 12px;
   color: #00000099;
   margin-top: 10px;
-  white-space: nowrap;
+  text-align: left;
+}
+
+.contenedor-terminos input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  flex: 0 0 16px;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  accent-color: #f5b800;
+}
+
+.contenedor-terminos label {
+  flex: 1;
+  line-height: 1.3;
 }

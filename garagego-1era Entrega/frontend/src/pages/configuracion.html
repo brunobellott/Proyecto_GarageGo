@@ -102,7 +102,7 @@
   <section class="profile-critical-options">
     <!-- LOGOUT -->
 
-    <a href="/frontend/src/pages/index.html" class="critical-item logout-red">
+    <a href="/frontend/src/pages/index.html" class="critical-item logout-red" id="logoutSettingsButton">
       <div class="critical-icon">
         <i class="las la-sign-out-alt"></i>
       </div>
@@ -130,7 +130,17 @@
   </section>
   <br />
   <button type="button" class="volver" onclick="history.back()">←</button>
-</body>
 <script src="/frontend/src/js/volverPaginas.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/frontend/src/js/supabaseClient.js"></script>
+<script>
+  document
+    .getElementById("logoutSettingsButton")
+    .addEventListener("click", async (e) => {
+      e.preventDefault();
+      await cerrarSesion();
+    });
+</script>
+</body>
 
 </html>

@@ -16,6 +16,11 @@
 
       <h2>INICIAR SESIÓN</h2>
       <form id="loginForm">
+        <button type="button" class="google-btn" id="googleLogin">
+          <img src="../../public/assets/icons/google.png" class="google-icon" />
+          CONTINUAR CON GOOGLE
+        </button>
+
         <input type="email" id="email" name="email" placeholder="Email" maxlength="100" autocomplete="email" required />
 
         <div class="contenedor-password">
@@ -42,30 +47,48 @@
 
   <script src="../js/verContraseña.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabaseClient.js"></script>
+
   <script>
+    document
+      .getElementById("googleLogin")
+      .addEventListener("click", iniciarSesionConGoogle);
+
     document
       .getElementById("loginForm")
       .addEventListener("submit", async (e) => {
+
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const email =
+          document.getElementById("email").value.trim().toLowerCase();
 
-        const res = await fetch("http://localhost:3000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
+        const password =
+          document.getElementById("password").value;
+
+        const {
+          data,
+          error
+        } = await supabaseClient.auth.signInWithPassword({
+
+          email,
+          password
+
         });
 
-        const data = await res.json();
+        console.log(data);
+        console.log(error);
 
-        if (data.success) {
-          window.location.href = "principal.html";
-        } else {
-          alert(data.message);
+        if (error) {
+
+          alert(error.message);
+          return;
         }
+
+        window.location.href =
+          "principal.html";
+
       });
   </script>
 </body>

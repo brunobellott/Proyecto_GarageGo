@@ -1,3 +1,4 @@
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 const express = require("express");
 const cors = require("cors");
@@ -27,17 +28,26 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// TODO limpieza futura: este backend conserva endpoints viejos de autenticacion
+// con Node/Express. La autenticacion actual del frontend usa Supabase Auth.
+// Mantener por ahora para no romper flujos antiguos como verificacion por codigo.
+
+
 // 🔌 CONEXIÓN A POSTGRESQL
+console.log(process.env.DATABASE_URL);
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "garagego",
-  password: "1234",
-  port: 5432,
+  
+  connectionString: process.env.DATABASE_URL,
+  
 });
+
+pool.query("SELECT NOW()")
+  .then(() => console.log("Conectado a Supabase"))
+  .catch(err => console.error(err));
 
 // =========================
 // REGISTER
+// TODO limpieza futura: reemplazado por Supabase Auth en frontend/src/pages/registro.html.
 // =========================
 app.post("/register", async (req, res) => {
   const { nombre, apellido, email, password } = req.body;
@@ -67,6 +77,7 @@ app.post("/register", async (req, res) => {
 
 // =========================
 // LOGIN
+// TODO limpieza futura: reemplazado por Supabase Auth en frontend/src/pages/index.html.
 // =========================
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;

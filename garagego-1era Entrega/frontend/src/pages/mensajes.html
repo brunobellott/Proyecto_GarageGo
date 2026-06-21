@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensajes</title>
+  <link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+  <link rel="stylesheet" href="/frontend/src/styles/style-principal.css" />
+  <style>
+    html {
+      min-height: 100%;
+      height: auto;
+      overflow: auto;
+      position: static;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabaseClient.js"></script>
+  <script>
+    protegerPaginaPrincipal();
+  </script>
+</head>
+
+<body class="mensajes-page-body">
+  <main class="messages-screen">
+    <header class="messages-header">
+      <div class="messages-topbar">
+        <a href="principal.html" class="messages-back" aria-label="Volver">
+          <i class="las la-angle-left"></i>
+        </a>
+
+        <h1>Mensajes</h1>
+
+        <span class="messages-spacer" aria-hidden="true"></span>
+      </div>
+
+      <label class="messages-search">
+        <i class="las la-search"></i>
+        <input type="search" placeholder="Buscar conversaciones..." aria-label="Buscar conversaciones" />
+      </label>
+    </header>
+
+    <section class="messages-empty-state" aria-live="polite">
+      <div class="messages-empty-icon">
+        <i class="las la-comment"></i>
+      </div>
+
+      <h2>Sin mensajes</h2>
+      <p>Cuando reserves o contactes un proveedor, tus conversaciones aparecerán aquí.</p>
+    </section>
+  </main>
+</body>
+
+</html>
